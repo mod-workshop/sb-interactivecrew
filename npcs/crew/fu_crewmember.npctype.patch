@@ -1,0 +1,57 @@
+[
+	{
+		"op" : "add", 
+		"path" : "/scriptConfig/dialogMode", 
+		"value" : "random"
+	},
+	{
+		"op" : "replace",
+		"path" : "/scriptConfig/dialog/crewmember/respawned", 
+		"value" : "/dialog/common.config:respawned"
+	},
+	{
+		"op" : "replace", 
+		"path" : "/scriptConfig/dialog/crewmember/follow", 
+		"value" : "/dialog/common.config:follow"
+	},
+	{
+		"op" : "replace", 
+		"path" : "/scriptConfig/dialog/crewmember/unfollow", 
+		"value" : "/dialog/common.config:unfollow"
+	},
+	{
+		"op" : "replace", 
+		"path" : "/scriptConfig/dialog/crewmember/cantreach", 
+		"value" : "/dialog/common.config:cantreach"
+	},
+	{
+		"op" : "add", 
+		"path" : "/scriptConfig/dialog/crewmember/holdPosition", 
+		"value" : "/dialog/commands.config:holdPosition"
+	},
+	{
+		"op" : "add", 
+		"path" : "/scriptConfig/dialog/crewmember/lounge", 
+		"value" : "/dialog/commands.config:lounge"
+	},
+	{
+		"op" : "add", 
+		"path" : "/scriptConfig/dialog/crewmember/operate", 
+		"value" : "/dialog/commands.config:operate"
+	},
+	{
+		"op" : "add", 
+		"path" : "/scriptConfig/dialog/crewmember/setTarget", 
+		"value" : "/dialog/commands.config:setTarget"
+	},
+	{
+		"op" : "add", 
+		"path" : "/statusControllerSettings/stats/maxEnergy", 
+		"value" : { "baseValue": 100.0 }
+	},
+	{
+		"op" : "replace",
+		"path" : "/movementParameters/runSpeed",
+		"value" : 16.0
+	}
+]

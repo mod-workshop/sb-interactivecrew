@@ -1,0 +1,17 @@
+{
+	"itemName" : "cmdhand",
+	"price" : 0,
+	"maxStack" : 1,
+	"rarity" : "Legendary",
+	"description" : "Gives you the authority to issue commands to your crew.",
+	"shortdescription" : "Commanding Hand",
+	"tooltipKind" : "base",
+	"category" : "customskill",
+	"twoHanded" : false,
+	"itemTags" : [ "customskill" ],
+	"level" : 1,
+	"animation" : "/items/active/weapons/ranged/gun.animation",
+	"animationParts" : {},
+	"inventoryIcon" : "cmdhandicon.png",
+	"scripts" : ["cmdhand.lua"]
+}

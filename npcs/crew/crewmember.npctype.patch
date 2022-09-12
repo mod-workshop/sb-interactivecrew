@@ -1,0 +1,37 @@
+[
+	{
+		"op" : "add", 
+		"path" : "/scriptConfig/dialogMode", 
+		"value" : "random"
+	},
+	{
+		"op" : "add", 
+		"path" : "/scriptConfig/dialog/crewmember/holdPosition", 
+		"value" : "/dialog/commands.config:holdPosition"
+	},
+	{
+		"op" : "add", 
+		"path" : "/scriptConfig/dialog/crewmember/lounge", 
+		"value" : "/dialog/commands.config:lounge"
+	},
+	{
+		"op" : "add", 
+		"path" : "/scriptConfig/dialog/crewmember/operate", 
+		"value" : "/dialog/commands.config:operate"
+	},
+	{
+		"op" : "add", 
+		"path" : "/scriptConfig/dialog/crewmember/setTarget", 
+		"value" : "/dialog/commands.config:setTarget"
+	},
+	{
+		"op" : "add", 
+		"path" : "/statusControllerSettings/stats/maxEnergy", 
+		"value" : { "baseValue": 100.0 }
+	},
+	{
+		"op" : "replace",
+		"path" : "/movementParameters/runSpeed",
+		"value" : 16.0
+	}
+]

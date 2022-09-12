@@ -1,0 +1,56 @@
+[
+	{
+		"op" : "add",
+		"path" : "/scriptConfig/dialog", 
+		"value" : {
+			"crewmember" : {
+				"offer" : {
+					"default" : {
+						"default" : [
+							"My specialty is to speed things up!"
+						]
+					},
+					"floran" : {
+						"default" : [
+							"Floran will help you run really fast!"
+						]
+					},
+					"glitch" : {
+						"default" : [
+							"Friendly. I offer concoctions for your far reaching aspirations!"
+						]
+					},
+					"novakid" : {
+						"default" : [
+							"No time to waste, partner! I can help you whenever you are in a hurry."
+						]
+					}
+				},
+				"roleDescription" : {
+					"default" : {
+						"default" : [
+							"My specialty is to speed things up!"
+						]
+					},
+					"floran" : {
+						"default" : [
+							"Floran will help you run really fast!"
+						]
+					},
+					"glitch" : {
+						"default" : [
+							"Friendly. I offer concoctions for your far reaching aspirations!"
+						]
+					},
+					"novakid" : {
+						"default" : [
+							"No time to waste, partner! I can help you whenever you are in a hurry."
+						]
+					}
+				},
+				"fieldBenefit" : "/dialog/skills.config:greenStim",
+				"combatBenefit" : "/dialog/skills.config:greenStim"
+			}
+		}
+	}
+]

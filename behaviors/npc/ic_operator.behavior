@@ -1,0 +1,94 @@
+{
+  "name": "icOperator",
+  "description": "",
+  "scripts": [
+    "/scripts/actions/ic_crew.lua",
+    "/scripts/actions/world.lua",
+    "/scripts/actions/movement.lua"
+  ],
+  "parameters": {},
+  "root": {
+    "title": "Sit",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "",
+        "type": "action",
+        "name": "getTargetEntityId",
+        "parameters": {},
+        "output": {
+          "targetEntityId": "interactTargetId"
+        }
+      },
+      {
+        "title": "",
+        "type": "action",
+        "name": "entityPosition",
+        "parameters": {
+          "entity": {"key": "interactTargetId"}
+        },
+        "output": {
+          "position": "interactTargetPosition"
+        }
+      },
+      {
+        "title": "",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": 1},
+          "success": {"value": -1}
+        },
+        "children": [
+          {
+            "title": "entityExists",
+            "type": "action",
+            "name": "entityExists",
+            "parameters": {
+              "entity": {"key": "interactTargetId"}
+            }
+          },
+          {
+            "title": "",
+            "type": "action",
+            "name": "moveToPosition",
+            "parameters": {
+              "groundPosition": {"value": true},
+              "position": {"key": "interactTargetPosition"},
+			  "run": {"value": true}
+            }
+          }
+        ]
+      },
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": 1},
+          "success": {"value": -1}
+        },
+        "children": [
+          {
+            "title": "entityExists",
+            "type": "action",
+            "name": "entityExists",
+            "parameters": {
+              "entity": {"key": "interactTargetId"}
+            }
+          },
+          {
+            "title": "operateDevice",
+            "type": "action",
+            "name": "operateDevice",
+            "parameters": {
+				      "deviceId": { "key": "interactTargetId" }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

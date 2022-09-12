@@ -1,0 +1,562 @@
+{
+  "type" : "crewmemberpacifist",
+  "baseType" : "crewmember",
+
+  "scriptConfig" : {
+    "behaviorConfig" : {
+      "emptyHands" : true
+    },
+
+    "crew" : {
+      "defaultUniform" : {
+        "head" : "",
+        "chest" : "conceptchest",
+        "legs" : "coollegs"
+        },
+		
+      "powerMultiplierExponent" : 1.0,
+      "role" : {
+        "benefits" : [
+          {
+            "type" : "EphemeralEffect",
+            "effect" : "nanowrapheal",
+			"duration" : 0.5
+          },
+          {
+            "type" : "EphemeralEffect",
+            "effect" : "fireblock",
+			"duration" : 5
+          },
+          {
+            "type" : "EphemeralEffect",
+            "effect" : "iceblock",
+			"duration" : 5
+          },
+          {
+            "type" : "EphemeralEffect",
+            "effect" : "poisonblock",
+			"duration" : 5
+          },
+          {
+            "type" : "EphemeralEffect",
+            "effect" : "electricblock",
+			"duration" : 5
+          },
+          {
+            "type" : "PersistentEffect",
+            "effect" : "shipregeneration1"
+          }
+        ],
+        "type" : "chemist",
+        "name" : "Professional Pacifist",
+        "field" : "Pacifism",
+        "uniformColorIndex" : 4
+      },
+	  
+      "ranks" : [
+		"Number 1 Best Friend",
+		"Designated Hand-holder",
+		"Deligated Smooch-master",
+		"Smooth-talking Stardust"
+      ]
+    },
+
+	//Each race has their own personality:
+	//Apex: Formal and protective, but emotionally-scarred.
+	//Avian: Romantic and forward-looking, but melancholy.
+	//Floran: Assertive and present-minded, but crude.
+	//Glitch: Loyal and caring, but anxious.
+	//Human: Fun and enthusiastic, but blithe.
+	//Hylotl: Wise and creative, but self-absorbed.
+	//Novakid: Wistful and unflinching, but reckless.
+	
+	"dialogMode" : "random",
+
+    "dialog" : {
+      "crewmember" : {
+        "offer" : {
+          "default" : {
+            "default" : [
+              "I really couldn't think of anything I'd rather do than explore the stars with you... Would that be alright?",
+			  "I think we really work well together! I'd love to go travelling with you!",
+			  "A life amongst the stars... Doesn't that sound romantic?",
+			  "There's no one I'd rather go see the sights of space with than you!"
+            ]
+          },
+          "apex" : {
+            "default" : [
+              "Living under a totalitarian regime is scary. You make it less so. Can I come with you?",
+              "I think we have excellent charisma together. Maybe this can be a more lasting arrangement?",
+              "If you wouldn't mind, I think I'd like to go with you. We work very well together in my opinion.",
+              "I think we are good for each other. If you'll have me, I'd like to see the universe with you."
+            ]
+          },
+          "avian" : {
+            "default" : [
+              "The stars look beautiful from here, but I'd much rather see them with you by my side. Can I come with?",
+              "Adventure has a place in my heart, and so do you. Could I keep both within arm's reach?",
+              "My heart feels lighter with you around. I'd like to go with you, if you'll have me."
+            ]
+          },
+          "hylotl" : {
+            "default" : [
+              "It is wisest to travel with someone you can trust to be there for you. Can I count on you too?",
+              "My greatest inspiration comes from my time with you. If you'd be so kind, I'd like to come with you.",
+              "You are my best friend. With you, I can be happy. May I come with you?"
+            ]
+          },
+          "floran" : {
+            "default" : [
+              "<selfname> wantss to come with you!",
+              "<selfname> thinkss you are great. What do you think of <selfname>?",
+              "You look sstrong. <selfname> wants to join you!"
+            ]
+          },
+          "glitch" : {
+            "default" : [
+              "Excited. I would very much like to join you and see the universe together!",
+              "Apprehensive. I think we make a great team. Do you agree?",
+              "Shy. I think we work very well together. May I join you?"
+            ]
+          },
+          "novakid" : {
+            "default" : [
+              "I may forget where I came from, but I know where I wanna go - with you, partner!",
+              "Hey partner, you lookin' for an ol' starry wanderer to ride with you?",
+              "Y'know, you an' I get along mighty fine. Fancy bringin' me along on that ship of yours?",
+              "If yer lookin for someone to join you on yer long journey, then I'm your huckleberry!"
+            ]
+          }
+        },
+        "roleDescription" : {
+          "default" : {
+            "default" : [
+              "I'm so glad you feel the same! Just say the word and I'll be there for you!",
+              "We're gonna make such great memories together! Where do we even start?"
+            ]
+          },
+          "apex" : {
+            "default" : [
+              "If you ever need me, don't hesitate to call on me. I'm here for you.",
+              "A fresh new start... Thank you for giving me this opportunity. I'm indebted to you."
+            ]
+          },
+          "avian" : {
+            "default" : [
+              "There's nowhere I'd rather be than right here with you. I can't wait to see where we go from here!",
+              "I feel like I could fly again! I hope I can bring you this kind of happiness too!"
+            ]
+          },
+          "hylotl" : {
+            "default" : [
+              "Nothing I could say could accurately describe how happy I am. I hope to make you feel just as happy too!",
+              "We'll make such great memories together, I can already tell! Let's get started!"
+            ]
+          },
+          "floran" : {
+            "default" : [
+              "<selfname> iss very glad you feel the ssame! <selfname> will now be here for you in times of emotional crisisss!",
+              "<selfname> iss excited to get ssstarted on new life together!"
+            ]
+          },
+          "glitch" : {
+            "default" : [
+              "Relieved. I am glad you feel the same! We will make a great team!",
+              "Elated. To spend time amongst the stars with you is a great gift indeed!"
+            ]
+          },
+          "novakid" : {
+            "default" : [
+              "I hope I didn't get too cheesy back there, partner. We're gonna make one heck of a team!",
+              "Well if I ain't lit up like the great big stars in the sky! I reckon that's on account'a you, partner!"
+            ]
+          }
+        },
+        "respawned" : {
+          "default" : {
+            "default" : [
+              "Ack! Are you alright?",
+              "What just happened? Are you okay?",
+              "I'm back! And you're okay!",
+              "Are you alright? I was worried!",
+              "Thank goodness you're alright!",
+              "I'm fine, I'm more worried about you! Are you alright?",
+			  "Wait, we're back on the ship? Are you okay?"
+            ]
+          },
+		  "apex" : {
+            "default" : [
+              "I must have made a mistake... Are you alright?",
+              "We're back on the ship? Are you okay?",
+              "Ouch, my head... Were you harmed?",
+              "I was worried about you. Are you in need of medical attention?"
+            ]
+          },
+		  "avian" : {
+            "default" : [
+              "Oof, my aching head... Are you alright?",
+              "You're back! Are you okay?",
+              "My goodness I was worried about you! Are you hurt anywhere?",
+              "I was so worried! I'm glad you're back now."
+            ]
+          },
+		  "hylotl" : {
+            "default" : [
+              "I must have slipped... Are you alright?",
+              "A misjudgment on my part... I hope you're okay.",
+              "I hope my absence wasn't troublesome! I trust you're alright?",
+              "I was worried for you! I'm glad you're back, safe and sound."
+            ]
+          },
+          "floran" : {
+            "default" : [
+              "<selfname> feelss funny. <selfname>'ss partner is okay?",
+              "<selfname> iss back on ship. You are ssafe?",
+              "Hunting partner iss back! Sso you are okay?",
+              "<selfname> wass worried about you!"
+            ]
+          },
+          "glitch" : {
+            "default" : [
+              "Dazed. What happened? Are you okay?",
+              "Relieved. You are back!",
+              "Concerned. I was worried. Are you alright?",
+              "Comforted. At least you are safe again."
+            ]
+          },
+          "novakid" : {
+            "default" : [
+              "Well shucks, I'd be lyin' if I said I wasn't worried about you, partner.",
+              "Was I dead? Were you dead? I guess we 'oughta be more careful!",
+              "Glad to see 'ya back on the home prairie! Ready to jump in the saddle again?",
+              "Comin' back to bein' gives me the shakes... You okay, partner?"
+            ]
+          }
+        },
+        "unfollow" : {
+          "default" : {
+            "default" : [
+              "Be careful, okay? I'll just wait here.",
+              "I'll stay here. Come back safe!",
+              "I'll be here for now. Stay safe while you're out there!",
+              "I'll stay here for now, then. Don't let the lilodons bite!"
+            ]
+          },
+          "apex" : {
+            "default" : [
+              "Don't take any unnecessary risks. I'll be here.",
+              "I'll wait for you here. Be safe.",
+              "Take care while you're out there. I'll be here when you get back."
+            ]
+          },
+          "avian" : {
+            "default" : [
+              "Stay safe while you're out there, okay? Come back right away if you need me!",
+              "If you need me, I'll be right here. Come back in one piece, okay?",
+              "I'll stay here. Come back soon, okay?"
+            ]
+          },
+          "hylotl" : {
+            "default" : [
+              "Please be careful out there. I'll wait for you here.",
+              "Don't do anything foolish! I'll be waiting for you right here.",
+              "I'll be here if you need my help. Come back safe."
+            ]
+          },
+          "floran" : {
+            "default" : [
+              "<selfname> will sstay. Don't forget your sstabby thing!",
+              "Sstay? Okay! Come back ssoon!",
+              "<selfname> will wait, maybe cook ssomething to sshare!"
+            ]
+          },
+          "glitch" : {
+            "default" : [
+              "Obliging. I will wait here. It is safe, yes?",
+              "Patient. I will eagerly await your return.",
+              "Amicable.  I will remain here if you need me to.",
+              "Concerned. I hope you will stay clear of danger."
+            ]
+          },
+          "novakid" : {
+            "default" : [
+              "Alright, partner, I'll jus' be right here.",
+              "I can hold up here, if you'd like.",
+              "I'll jus' rest my boots while I wait for you, partner."
+            ]
+          }
+        },
+        "follow" : {
+          "default" : {
+            "default" : [
+              "Ready when you are!",
+              "I thought you'd never ask!",
+              "You're back! Let's get going!",
+              "Where will we be going today?",
+              "I missed you! Let's get a move on!"
+            ]
+          },
+          "apex" : {
+            "default" : [
+              "I'm glad we'll be travelling together again.",
+              "Your absence was felt. I'm ready to go.",
+              "We always worked better as a team. Ready when you are.",
+              "I'm glad you're back. Let's go.",
+              "Where will we be going?"
+            ]
+          },
+          "avian" : {
+            "default" : [
+              "You're back! Let's get going.",
+              "There you are! Ready to go?",
+              "I was just thinking about you! Are we leaving?",
+              "I'm ready if you are!",
+              "Oh! You caught me in the middle of preening... That's okay though, are you ready to go?"
+            ]
+          },
+          "hylotl" : {
+            "default" : [
+              "I was patiently awaiting your return! Shall we go?",
+              "...Oh, sorry! I was writing a poem for- uh, ready to go?",
+              "Seasons could pass and I'd still recognize that look in your eyes. Let's go!",
+              "I'm glad you're back. Let's be on our way!"
+            ]
+          },
+          "floran" : {
+            "default" : [
+              "Let'ss go!",
+              "Hunting partner iss back! <selfname> iss ready!",
+              "Ssilly hunting partner! Don't hunt alone! Let'ss go!",
+              "<selfname> ready when you are!",
+              "Yesss! <selfname> hass been waiting for thiss!"
+            ]
+          },
+          "glitch" : {
+            "default" : [
+              "Humble. Lead on and I will follow.",
+              "Shy. I missed you. Will we go now?",
+              "Relieved. You returned safe. I will follow once again.",
+              "Inquisitive. Are we going somewhere?"
+            ]
+          },
+          "novakid" : {
+            "default" : [
+              "No time to dally - let's ride!",
+              "I never thought you'd ask! Let's get it movin'!",
+              "Time to ride, partner?",
+              "Yee-haw, let's go!"
+            ]
+          }
+        },
+        "cantreach" : {
+          "default" : {
+            "default" : [
+              "Whoops. Be there in a sec!",
+              "I'll be there in a second!",
+              "Give me a moment! I'll be right there!",
+              "Stay safe! I'll be there in just a moment!",
+              "Let me catch up!"
+            ]
+          },
+          "apex" : {
+            "default" : [
+              "Be safe- I'll teleport to you in a moment.",
+              "You move quickly. I'll be there in just a moment.",
+              "I can't quite get to you- be careful while I prepare to teleport."
+            ]
+          },
+          "avian" : {
+            "default" : [
+              "I'll be right there!",
+              "I'll catch up! Just be careful!",
+              "I'll be a moment! Don't do anything too dangerous okay?"
+            ]
+          },
+          "hylotl" : {
+            "default" : [
+              "Keep a watchful eye. I'll be there in a moment.",
+              "Look out; I'll be right there.",
+              "Be careful, I might need to teleport to you."
+            ]
+          },
+          "floran" : {
+            "default" : [
+              "Hunting partner iss fast! <selfname> needss to catch up!",
+              "<selfname> cannot protect you from here!",
+              "<selfname> not close enough to you!"
+            ]
+          },
+          "novakid" : {
+            "default" : [
+              "Hoowee you're fast! I'll be right there!",
+              "Hold your horses, I'm a'comin'!",
+              "Watch your back partner, I ain't there just yet!"
+            ]
+          },
+          "glitch" : {
+            "default" : [
+              "Worried. I will try to catch up!",
+              "Apprehensive. I will be there soon!",
+              "Concerned. I will be right there!"
+            ]
+          }
+        },
+		"fieldBenefit" : {
+          "default" : {
+            "default" : [
+              "You look hurt. Let me help you out!",
+              "Let me help you out!",
+              "You look like you wouldn't mind some healing. Here!",
+              "Hey, I can heal you! Just hold still!"
+            ]
+          },
+          "apex" : {
+            "default" : [
+              "You look hurt. Let me help you out!",
+              "Let me help you out!",
+              "You look like you wouldn't mind some healing. Here!",
+              "Hey, I can heal you! Just hold still!"
+            ]
+          },
+          "avian" : {
+            "default" : [
+              "You look hurt. Let me help you out!",
+              "Let me help you out!",
+              "You look like you wouldn't mind some healing. Here!",
+              "Hey, I can heal you! Just hold still!"
+            ]
+          },
+          "floran" : {
+            "default" : [
+              "You look wounded. <selfname> can help!",
+              "<selfname> is medic! Trust <selfname>!",
+              "You look hurt. <selfname> can help you!"
+            ]
+          },
+          "hylotl" : {
+            "default" : [
+              "You look hurt. Let me help you out!",
+              "Let me help you out!",
+              "You look like you wouldn't mind some healing. Here!",
+              "Hey, I can heal you! Just hold still!"
+            ]
+          },
+          "glitch" : {
+            "default" : [
+              "Concerned. You look like you could do with some healing!",
+              "Caring. Perhaps you could do with some healing?",
+              "Helpful. You look like you could be in better shape. Let me assist you!"
+            ]
+          },
+          "novakid" : {
+            "default" : [
+              "You look hurt. Let me help you out!",
+              "Let me help you out!",
+              "You look like you wouldn't mind some healing. Here!",
+              "Hey, I can heal you! Just hold still!"
+            ]
+          }
+        },
+        "combatBenefit" : {
+		  "default" : {
+            "default" : [
+              "You look like you could use some healing!",
+              "Let me help you out!",
+              "I'm a combat medic - let me help you!",
+              "Looks like you could use my assistance!",
+              "I can heal you! Come to me, quickly!"
+            ]
+          },
+          "apex" : {
+            "default" : [
+              "You look like you could use some healing!",
+              "Let me help you out!",
+              "I'm a combat medic - let me help you!",
+              "Looks like you could use my assistance!",
+              "I can heal you! Come to me, quickly!"
+            ]
+          },
+          "avian" : {
+            "default" : [
+              "You look like you could use some healing!",
+              "Let me help you out!",
+              "I'm a combat medic - let me help you!",
+              "Looks like you could use my assistance!",
+              "I can heal you! Come to me, quickly!"
+            ]
+          },
+          "floran" : {
+            "default" : [
+              "<selfname> hasss things to help out!",
+              "<selfname> can help out!",
+              "<selfname> hasss things to help!"
+            ]
+          },
+          "hylotl" : {
+            "default" : [
+              "You look like you could use some healing!",
+              "Let me help you out!",
+              "I'm a combat medic - let me help you!",
+              "Looks like you could use my assistance!",
+              "I can heal you! Come to me, quickly!"
+            ]
+          },
+          "glitch" : {
+            "default" : [
+              "Eager. I can help you out!",
+              "Excited. Perhaps you could do with some healing?",
+              "Helpful. This should heal you!",
+              "Helpful. Take this, it will help!"
+            ]
+          },
+          "novakid" : {
+            "default" : [
+              "You look like you could use some healing!",
+              "Let me help you out!",
+              "I'm a combat medic - let me help you!",
+              "Looks like you could use my assistance!",
+              "I can heal you! Come to me, quickly!"
+            ]
+          }
+        }
+      },
+
+      "tenant" : {
+        "grumbles" : {
+          "tagCriteria" : "/dialog/grumble.config:tagCriteria",
+          "enclosedArea" : "/dialog/grumble.config:enclosedArea",
+          "otherDeed" : "/dialog/grumble.config:otherDeed",
+          "severe" : "/dialog/grumble.config:severe",
+          "final" : "/dialog/grumble.config:final"
+        },
+        "arrivedHome" : {
+          "beacon" : "/dialog/arrivedhome.config:beacon",
+          "rent" : "/dialog/arrivedhome.config:rent"
+        }
+      },
+
+      "converse" : "/dialog/crewmembersobff.config:converse",
+
+      "attack" : "/dialog/combat.config:attack",
+      "reattack" : "/dialog/combat.config:reattack",
+      "killedTarget" : "/dialog/combat.config:killedTarget",
+      "lostTarget" : "/dialog/combat.config:lostTarget",
+      "outOfSight" : "/dialog/combat.config:outOfSight",
+      "cheerOn" : "/dialog/combat.config:cheerOn",
+      "cantReach" : "/dialog/combat.config:cantReach"
+    }
+  },
+
+  "items" : {
+    "default" : [
+      [0, [
+          {
+            "primary" : [ "" ]
+          },
+		  {
+            "primary" : [ "" ]
+          }
+        ] ]
+    ]
+  }
+}

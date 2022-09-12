@@ -1,0 +1,5 @@
+[
+  { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": { "item": "cmdhand" } },
+  { "op": "add", "path": "/defaultBlueprints/tier1/-", "value": { "item": "dualcmdhand" } },
+  { "op": "add", "path": "/companionsConfig/scripts/-", "value": "/scripts/companions/ic_player.lua" }
+]

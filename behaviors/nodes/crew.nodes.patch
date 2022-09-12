@@ -1,0 +1,132 @@
+[
+	{
+		"op": "add",
+		"path": "/isHoldingPosition",
+		"value": {
+			"type": "action",
+			"name": "isHoldingPosition",
+			"title": "",
+			"properties": {},
+			"category": "ic_crew",
+			"script": "/scripts/actions/ic_crew.lua",
+			"output": { "targetPosition": { "type": "position", "key": null } }
+		}
+	},
+	{
+		"op": "add",
+		"path": "/isLounging",
+		"value": {
+			"type": "action",
+			"name": "isLounging",
+			"title": "",
+			"properties": { "unoccupied": {"type": "bool", "value": true} },
+			"category": "ic_crew",
+			"script": "/scripts/actions/ic_crew.lua",
+			"output": {}
+		}
+	},
+	{
+		"op": "add",
+		"path": "/isOperating",
+		"value": {
+			"type": "action",
+			"name": "isOperating",
+			"title": "",
+			"properties": {},
+			"category": "ic_crew",
+			"script": "/scripts/actions/ic_crew.lua",
+			"output": {}
+		}
+	},
+	{
+		"op": "add",
+		"path": "/isUsingSkill",
+		"value": {
+			"type": "action",
+			"name": "isUsingSkill",
+			"title": "",
+			"properties": {},
+			"category": "ic_crew",
+			"script": "/scripts/actions/ic_crew.lua",
+			"output": {}
+		}
+	},
+	{
+		"op": "add",
+		"path": "/stopUsingSkill",
+		"value": {
+			"type": "action",
+			"name": "stopUsingSkill",
+			"title": "",
+			"properties": {},
+			"category": "ic_crew",
+			"script": "/scripts/actions/ic_crew.lua",
+			"output": {}
+		}
+	},
+	{
+		"op": "add",
+		"path": "/isAttackTargetSet",
+		"value": {
+			"type": "action",
+			"name": "isAttackTargetSet",
+			"title": "",
+			"properties": {},
+			"category": "ic_crew",
+			"script": "/scripts/actions/ic_crew.lua",
+			"output": {}
+		}
+	},
+	{
+		"op": "add",
+		"path": "/getAttackTarget",
+		"value": {
+			"type": "action",
+			"name": "getAttackTarget",
+			"title": "",
+			"properties": {},
+			"category": "ic_crew",
+			"script": "/scripts/actions/ic_crew.lua",
+			"output": { "target": { "type": "entity", "key": null } }
+		}
+	},
+	{
+		"op": "add",
+		"path": "/getTargetEntityId",
+		"value": {
+			"type": "action",
+			"name": "getTargetEntityId",
+			"title": "",
+			"properties": {},
+			"category": "ic_crew",
+			"script": "/scripts/actions/ic_crew.lua",
+			"output": { "targetEntityId": { "type": "entity", "key": null } }
+		}
+	},
+	{
+		"op": "add",
+		"path": "/operateDevice",
+		"value": {
+			"type": "action",
+			"name": "operateDevice",
+			"title": "",
+			"properties": { "deviceId": { "type": "entity", "key": null } },
+			"category": "ic_crew",
+			"script": "/scripts/actions/ic_crew.lua",
+			"output": { }
+		}
+	},
+	{
+		"op": "add",
+		"path": "/icLogValue",
+		"value": {
+			"type": "action",
+			"name": "icLogValue",
+			"title": "",
+			"properties": { "valueToLog": { "type": "string", "value": null } },
+			"category": "ic_crew",
+			"script": "/scripts/actions/ic_crew.lua",
+			"output": {  }
+		}
+	}
+]

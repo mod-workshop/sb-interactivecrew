@@ -1,0 +1,4 @@
+[
+	{"op" : "add", "path" : "/scripts/-", "value" : "/scripts/actions/cs_dialog.lua"},
+	{"op": "remove", "path": "/root/children/0/children/1/children/2/child/children/0"}
+]

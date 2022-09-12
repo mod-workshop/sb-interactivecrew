@@ -1,0 +1,56 @@
+[
+	{
+		"op" : "add",
+		"path" : "/scriptConfig/dialog", 
+		"value" : {
+			"crewmember" : {
+				"offer" : {
+					"default" : {
+						"default" : [
+							"My specialty is combat enhancement!"
+						]
+					},
+					"floran" : {
+						"default" : [
+							"Floran will help you fight better! But Floran ssstill best."
+						]
+					},
+					"glitch" : {
+						"default" : [
+							"Friendly. I offer concoctions for your conquering aspirations!"
+						]
+					},
+					"novakid" : {
+						"default" : [
+							"Howdy partner! Ever tried combat enhancers? Not addictive I assure you."
+						]
+					}
+				},
+				"roleDescription" : {
+					"default" : {
+						"default" : [
+							"My specialty is combat enhancement!"
+						]
+					},
+					"floran" : {
+						"default" : [
+							"Floran will help you fight better! But Floran ssstill best."
+						]
+					},
+					"glitch" : {
+						"default" : [
+							"Friendly. I offer concoctions for your conquering aspirations!"
+						]
+					},
+					"novakid" : {
+						"default" : [
+							"Howdy partner! Ever tried combat enhancers? Not addictive I assure you."
+						]
+					}
+				},
+				"fieldBenefit" : "/dialog/skills.config:orangeStim",
+				"combatBenefit" : "/dialog/skills.config:orangeStim"
+			}
+		}
+	}
+]

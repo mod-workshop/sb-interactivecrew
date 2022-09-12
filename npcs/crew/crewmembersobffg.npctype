@@ -1,0 +1,35 @@
+{
+  "type" : "crewmembersobffg",
+  "baseType" : "crewmembersobff",
+
+  "scriptConfig" : {
+    "crew" : {
+      "role" : {
+        "type" : "soldier",
+        "name" : "Partner(Athlete)",
+        "field" : "Comfort",
+        "uniformColorIndex" : 4,
+        "benefits" : [
+          {
+            // Ephemeral effects gained upon leaving the ship
+            "type" : "EphemeralEffect",
+            "effect" : "runboost",
+            "duration" : 30
+          },
+          {
+            // Persistent effects are active while on the ship
+            "type" : "PersistentEffect",
+            "effect" : "shiprunboost"
+          }
+        ]
+      }
+    },
+
+	  "dialog" : {
+      "crewmember" : {
+		    "fieldBenefit" : "/dialog/skills.config:greenStim",
+        "combatBenefit" : "/dialog/skills.config:greenStim"
+      }
+    }
+  }
+}

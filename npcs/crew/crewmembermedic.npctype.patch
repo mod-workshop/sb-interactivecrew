@@ -1,0 +1,56 @@
+[
+	{
+		"op" : "add",
+		"path" : "/scriptConfig/dialog", 
+		"value" : {
+			"crewmember" : {
+				"offer" : {
+					"default" : {
+						"default" : [
+							"I offer you my services as a combat medic."
+						]
+					},
+					"floran" : {
+						"default" : [
+							"Floran will help you mend woundss while hunting."
+						]
+					},
+					"glitch" : {
+						"default" : [
+							"Friendly. I offer medical services on the field."
+						]
+					},
+					"novakid" : {
+						"default" : [
+							"I am a certified physician... Just kidding but can fix you up all the same, partner!"
+						]
+					}
+				},
+				"roleDescription" : {
+					"default" : {
+						"default" : [
+							"I offer you my services as a combat medic."
+						]
+					},
+					"floran" : {
+						"default" : [
+							"Floran will help you mend woundss while hunting."
+						]
+					},
+					"glitch" : {
+						"default" : [
+							"Friendly. I offer medical services on the field."
+						]
+					},
+					"novakid" : {
+						"default" : [
+							"I am a certified physician... Just kidding but can fix you up all the same, partner!"
+						]
+					}
+				},
+				"fieldBenefit" : "/dialog/skills.config:medicHeal",
+				"combatBenefit" : "/dialog/skills.config:medicHeal"
+			}
+		}
+	}
+]

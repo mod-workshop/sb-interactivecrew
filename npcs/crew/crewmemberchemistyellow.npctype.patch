@@ -1,0 +1,61 @@
+[
+	{
+		"op" : "replace",
+		"path" : "/scriptConfig/crew/role/benefits/0/duration", 
+		"value" : 300
+	},
+	{
+		"op" : "add",
+		"path" : "/scriptConfig/dialog",
+		"value" : {
+			"crewmember" : {
+				"offer" : {
+					"default" : {
+						"default" : [
+							"My specialty is to make things glow!"
+						]
+					},
+					"floran" : {
+						"default" : [
+							"Floran will help you explore dark places!"
+						]
+					},
+					"glitch" : {
+						"default" : [
+							"Friendly. I offer thee luminiscecnt concoctions!"
+						]
+					},
+					"novakid" : {
+						"default" : [
+							"I'm all willing to share my glow, partner!"
+						]
+					}
+				},
+				"roleDescription" : {
+					"default" : {
+						"default" : [
+							"My specialty is to make things glow!"
+						]
+					},
+					"floran" : {
+						"default" : [
+							"Floran will help you explore dark places!"
+						]
+					},
+					"glitch" : {
+						"default" : [
+							"Friendly. I offer thee luminiscecnt concoctions!"
+						]
+					},
+					"novakid" : {
+						"default" : [
+							"I'm all willing to share my glow, partner!"
+						]
+					}
+				},
+				"fieldBenefit" : "/dialog/skills.config:yellowStim",
+				"combatBenefit" : "/dialog/skills.config:yellowStim"
+			}
+		}
+	}
+]

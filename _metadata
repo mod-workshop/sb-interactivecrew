@@ -1,0 +1,11 @@
+{
+  "author" : "Corbent",
+  "description" : "Adds an item to give contextual commands to your followers. Among other improvements.",
+  "friendlyName" : "Corbent's Interactive Crew",
+  "includes" : ["FrackinUniverse", "DateBound"],
+  "link" : "steam://url/CommunityFilePage/2774848292",
+  "name" : "interactivecrew",
+  "steamContentId" : "2774848292",
+  "tags" : "NPCs and Creatures",
+  "version" : "1.0.3"
+}

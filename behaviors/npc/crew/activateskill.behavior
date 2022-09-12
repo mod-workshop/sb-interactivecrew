@@ -1,0 +1,210 @@
+{
+  "name": "crewmember-activateskill",
+  "description": "",
+  "scripts": [
+    "/scripts/actions/crew.lua",
+    "/scripts/behavior/bgroup.lua",
+    "/scripts/actions/world.lua",
+    "/scripts/actions/movement.lua",
+    "/scripts/behavior.lua",
+    "/scripts/actions/time.lua",
+    "/scripts/actions/dialog.lua"
+  ],
+  "parameters": {
+    "combatBenefitRange": 3
+  },
+  "root": {
+    "title": "sequence",
+    "type": "composite",
+    "name": "sequence",
+    "parameters": {},
+    "children": [
+      {
+        "title": "hasCombatBenefit",
+        "type": "action",
+        "name": "hasCombatBenefit",
+        "parameters": {}
+      },
+      {
+        "title": "recruiterEntity",
+        "type": "action",
+        "name": "recruiterEntity",
+        "parameters": {},
+        "output": {
+          "entity": "player"
+        }
+      },
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": 1},
+          "success": {"value": -1}
+        },
+        "children": [
+          {
+            "title": "group",
+            "type": "action",
+            "name": "group",
+            "parameters": {
+              "goal": {"value": "player"},
+              "goalType": {"value": "entity"},
+              "groupId": {"value": "combatBenefits"},
+              "maxMembers": {"value": 5},
+              "minMembers": {"value": 1},
+              "position": {"key": "self"}
+            }
+          },
+          {
+            "title": "task",
+            "type": "action",
+            "name": "task",
+            "parameters": {
+              "groupId": {"value": "combatBenefits"},
+              "maxMembers": {"value": 1},
+              "minMembers": {"value": 1},
+              "taskId": {"value": "benefitGiver"}
+            }
+          },
+          {
+            "title": "sequence",
+            "type": "composite",
+            "name": "sequence",
+            "parameters": {},
+            "children": [
+              {
+                "title": "parallel",
+                "type": "composite",
+                "name": "parallel",
+                "parameters": {
+                  "fail": {"value": 1},
+                  "success": {"value": -1}
+                },
+                "children": [
+                  {
+                    "title": "entityPosition",
+                    "type": "action",
+                    "name": "entityPosition",
+                    "parameters": {
+                      "entity": {"key": "player"}
+                    },
+                    "output": {
+                      "position": "playerPosition"
+                    }
+                  },
+                  {
+                    "title": "dynamic",
+                    "type": "composite",
+                    "name": "dynamic",
+                    "parameters": {},
+                    "children": [
+                      {
+                        "title": "entityInRange",
+                        "type": "action",
+                        "name": "entityInRange",
+                        "parameters": {
+                          "entity": {"key": "player"},
+                          "position": {"key": "self"},
+                          "range": {"key": "<combatBenefitRange>"}
+                        }
+                      },
+                      {
+                        "title": "parallel",
+                        "type": "composite",
+                        "name": "parallel",
+                        "parameters": {
+                          "fail": {"value": 1},
+                          "success": {"value": -1}
+                        },
+                        "children": [
+                          {
+                            "title": "moveToPosition",
+                            "type": "action",
+                            "name": "moveToPosition",
+                            "parameters": {
+                              "avoidLiquid": {"value": true},
+                              "groundPosition": {"value": true},
+                              "maxGround": {"value": 5},
+                              "minGround": {"value": -5},
+                              "pathOptions": {"value": {}},
+                              "position": {"key": "playerPosition"},
+                              "run": {"value": true}
+                            },
+                            "output": {
+                              "pathfinding": "isPathfinding"
+                            }
+                          },
+                          {
+                            "title": "dynamic",
+                            "type": "composite",
+                            "name": "dynamic",
+                            "parameters": {},
+                            "children": [
+                              {
+                                "title": "inverter",
+                                "type": "decorator",
+                                "name": "inverter",
+                                "parameters": {},
+                                "child": {
+                                  "title": "hasFlag",
+                                  "type": "action",
+                                  "name": "hasFlag",
+                                  "parameters": {
+                                    "name": {"key": "isPathfinding"}
+                                  }
+                                }
+                              },
+                              {
+                                "title": "failer",
+                                "type": "decorator",
+                                "name": "failer",
+                                "parameters": {},
+                                "child": {
+                                  "title": "timer",
+                                  "type": "action",
+                                  "name": "timer",
+                                  "parameters": {
+                                    "time": {"value": 1}
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "sayToEntity",
+                "type": "action",
+                "name": "sayToEntity",
+                "parameters": {
+                  "dialogType": {"value": "dialog.crewmember.combatBenefit"},
+                  "entity": {"key": "player"},
+                  "tags": {"value": {}}
+                }
+              },
+              {
+                "title": "triggerCombatBenefit",
+                "type": "action",
+                "name": "triggerCombatBenefit",
+                "parameters": {}
+              },
+              {
+                "title": "timer",
+                "type": "action",
+                "name": "timer",
+                "parameters": {
+                  "time": {"value": 2}
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

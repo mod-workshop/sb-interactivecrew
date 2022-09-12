@@ -1,0 +1,27 @@
+[  
+  {
+    "op" : "add", 
+    "path" : "/scriptConfig/questGenerator/graduation/nextNpcType/-",
+    "value" : [1, "crewmembersobff" ] 
+  },
+  {
+    "op" : "add", 
+    "path" : "/scriptConfig/questGenerator/graduation/nextNpcType/-",
+    "value" : [1, "crewmembersobffb" ] 
+  },
+  {
+    "op" : "add", 
+    "path" : "/scriptConfig/questGenerator/graduation/nextNpcType/-",
+    "value" : [1, "crewmembersobffg" ] 
+  },
+  {
+    "op" : "add", 
+    "path" : "/scriptConfig/questGenerator/graduation/nextNpcType/-",
+    "value" : [1, "crewmembersobffo" ] 
+  },
+  {
+    "op" : "add", 
+    "path" : "/scriptConfig/questGenerator/graduation/nextNpcType/-",
+    "value" : [1, "crewmembersobffy" ] 
+  }
+]

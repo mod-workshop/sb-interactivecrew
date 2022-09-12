@@ -1,0 +1,31 @@
+{
+	"icLounger": {
+		"type": "module",
+		"name": "icLounger",
+		"title": "icLounger",
+		"properties": {}
+	},
+	"icOperator": {
+		"type": "module",
+		"name": "icOperator",
+		"title": "icOperator",
+		"properties": {}
+	},
+	"crewmember-activateskill": {
+		"type": "module",
+		"name": "crewmember-activateskill",
+		"title": "crewmember-activateskill",
+		"properties": {
+			"combatBenefitRange": {"type": "number", "value": 3},
+			"targetDangerRange": {"type": "number", "value": 8}
+		}
+	},
+	"ic_crewmember-combat": {
+		"type": "module",
+		"name": "ic_crewmember-combat",
+		"title": "ic_crewmember-combat",
+		"properties": {
+			"meleeStandby": {"type": "bool", "value": true}
+		}
+	}
+}

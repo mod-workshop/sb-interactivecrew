@@ -1,0 +1,248 @@
+{
+  "name": "ic_crewmember-combat",
+  "description": "",
+  "scripts": [
+    "/scripts/actions/ic_crew.lua",
+    "/scripts/actions/npc.lua",
+    "/scripts/actions/math.lua",
+    "/scripts/actions/dialog.lua",
+    "/scripts/behavior.lua",
+    "/scripts/actions/world.lua"
+  ],
+  "parameters": {
+    "meleeStandby": true,
+    "teleportRange": 50
+  },
+  "root": {
+    "title": "selector",
+    "type": "composite",
+    "name": "selector",
+    "parameters": {},
+    "children": [
+      {
+        "title": "parallel",
+        "type": "composite",
+        "name": "parallel",
+        "parameters": {
+          "fail": {"value": 1},
+          "success": {"value": -1}
+        },
+        "children": [
+          {
+            "title": "selector",
+            "type": "composite",
+            "name": "selector",
+            "parameters": {},
+            "children": [
+              {
+                "title": "sequence",
+                "type": "composite",
+                "name": "sequence",
+                "parameters": {},
+                "children": [
+                  {
+                    "title": "isAttackTargetSet",
+                    "type": "action",
+                    "name": "isAttackTargetSet",
+                    "parameters": {}
+                  },
+                  {
+                    "title": "getAttackTarget",
+                    "type": "action",
+                    "name": "getAttackTarget",
+                    "parameters": {},
+                    "output": {
+                      "target": "target"
+                    }
+                  }
+                ]
+              },
+              {
+                "title": "friendlyTargeting",
+                "type": "action",
+                "name": "friendlyTargeting",
+                "parameters": {
+                  "attackOnSight": {"key": "attackOnSight"},
+                  "broadcastInterval": {"value": 2},
+                  "hostileDamageTeam": {"value": {"type": "friendly", "team": 1}},
+                  "losTime": {"value": 8},
+                  "queryRange": {"value": 50},
+                  "trackingRange": {"value": 100}
+                },
+                "output": {
+                  "target": "target"
+                }
+              }
+            ]
+          },
+          {
+            "title": "sequence",
+            "type": "composite",
+            "name": "sequence",
+            "parameters": {},
+            "children": [
+              {
+                "title": "succeeder",
+                "type": "decorator",
+                "name": "succeeder",
+                "parameters": {},
+                "child": {
+                  "title": "selector",
+                  "type": "composite",
+                  "name": "selector",
+                  "parameters": {},
+                  "children": [
+                    {
+                      "title": "chance",
+                      "type": "action",
+                      "name": "chance",
+                      "parameters": {
+                        "chance": {"value": 0.75}
+                      }
+                    },
+                    {
+                      "title": "cooldown",
+                      "type": "decorator",
+                      "name": "cooldown",
+                      "parameters": {
+                        "cooldown": {"value": 10},
+                        "onFail": {"value": false},
+                        "onSuccess": {"value": true}
+                      },
+                      "child": {
+                        "title": "sayToEntity",
+                        "type": "action",
+                        "name": "sayToEntity",
+                        "parameters": {
+                          "dialogType": {"value": "dialog.attack"},
+                          "entity": {"key": "target"},
+                          "tags": {"value": {}}
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "title": "setFlag",
+                "type": "action",
+                "name": "setFlag",
+                "parameters": {
+                  "name": {"value": "inCombat"}
+                }
+              },
+              {
+                "title": "succeeder",
+                "type": "decorator",
+                "name": "succeeder",
+                "parameters": {},
+                "child": {
+                  "title": "npccombat",
+                  "type": "module",
+                  "name": "npccombat",
+                  "parameters": {}
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "failer",
+        "type": "decorator",
+        "name": "failer",
+        "parameters": {},
+        "child": {
+          "title": "selector",
+          "type": "composite",
+          "name": "selector",
+          "parameters": {},
+          "children": [
+            {
+              "title": "inverter",
+              "type": "decorator",
+              "name": "inverter",
+              "parameters": {},
+              "child": {
+                "title": "hasFlag",
+                "type": "action",
+                "name": "hasFlag",
+                "parameters": {
+                  "name": {"key": "inCombat"}
+                }
+              }
+            },
+            {
+              "title": "sequence",
+              "type": "composite",
+              "name": "sequence",
+              "parameters": {},
+              "children": [
+                {
+                  "title": "unsetFlag",
+                  "type": "action",
+                  "name": "unsetFlag",
+                  "parameters": {
+                    "name": {"value": "inCombat"}
+                  }
+                },
+                {
+                  "title": "selector",
+                  "type": "composite",
+                  "name": "selector",
+                  "parameters": {},
+                  "children": [
+                    {
+                      "title": "chance",
+                      "type": "action",
+                      "name": "chance",
+                      "parameters": {
+                        "chance": {"value": 0.75}
+                      }
+                    },
+                    {
+                      "title": "sequence",
+                      "type": "composite",
+                      "name": "sequence",
+                      "parameters": {},
+                      "children": [
+                        {
+                          "title": "entityExists",
+                          "type": "action",
+                          "name": "entityExists",
+                          "parameters": {
+                            "entity": {"key": "target"}
+                          }
+                        },
+                        {
+                          "title": "sayToEntity",
+                          "type": "action",
+                          "name": "sayToEntity",
+                          "parameters": {
+                            "dialogType": {"value": "dialog.lostTarget"},
+                            "entity": {"key": "target"},
+                            "tags": {"value": {}}
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "title": "sayToEntity",
+                      "type": "action",
+                      "name": "sayToEntity",
+                      "parameters": {
+                        "dialogType": {"value": "dialog.killedTarget"},
+                        "entity": {"key": "target"},
+                        "tags": {"value": {}}
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

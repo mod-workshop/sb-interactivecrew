@@ -1,0 +1,35 @@
+{
+  "type" : "crewmembersobffo",
+  "baseType" : "crewmembersobff",
+
+  "scriptConfig" : {
+    "crew" : {
+      "role" : {
+        "type" : "soldier",
+        "name" : "Partner(Brawler)",
+        "field" : "Comfort",
+        "uniformColorIndex" : 4,
+        "benefits" : [
+          {
+            // Ephemeral effects gained upon leaving the ship
+            "type" : "EphemeralEffect",
+            "effect" : "rage",
+            "duration" : 30
+          },
+          {
+            // Persistent effects are active while on the ship
+            "type" : "PersistentEffect",
+            "effect" : "shiprage"
+          }
+        ]
+      }
+    },
+
+	  "dialog" : {
+      "crewmember" : {
+		    "fieldBenefit" : "/dialog/skills.config:orangeStim",
+        "combatBenefit" : "/dialog/skills.config:orangeStim"
+      }
+    }
+  }
+}

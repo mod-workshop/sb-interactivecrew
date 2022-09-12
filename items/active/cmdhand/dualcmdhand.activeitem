@@ -1,0 +1,17 @@
+{
+	"itemName" : "dualcmdhand",
+	"price" : 0,
+	"maxStack" : 1,
+	"rarity" : "Legendary",
+	"description" : "Double the party, double the fun. You can command up to 4 companions using left click, shift+left click, right click and shift+right click.",
+	"shortdescription" : "Dual Commanding Hands",
+	"tooltipKind" : "base",
+	"category" : "customskill",
+	"twoHanded" : true,
+	"itemTags" : [ "customskill" ],
+	"level" : 1,
+	"animation" : "/items/active/weapons/ranged/gun.animation",
+	"animationParts" : {},
+	"inventoryIcon" : "cmdhandicon.png",
+	"scripts" : ["cmdhand.lua"]
+}

@@ -1,0 +1,56 @@
+[
+	{
+		"op" : "add",
+		"path" : "/scriptConfig/dialog", 
+		"value" : {
+			"crewmember" : {
+				"offer" : {
+					"default" : {
+						"default" : [
+							"My specialty is to make things bouncy!"
+						]
+					},
+					"floran" : {
+						"default" : [
+							"Floran will help you reach high places!"
+						]
+					},
+					"glitch" : {
+						"default" : [
+							"Friendly. I offer concoctions for your high reaching aspirations!"
+						]
+					},
+					"novakid" : {
+						"default" : [
+							"I can help you climb mountains a lot easier, partner!"
+						]
+					}
+				},
+				"roleDescription" : {
+					"default" : {
+						"default" : [
+							"My specialty is to make things bouncy!"
+						]
+					},
+					"floran" : {
+						"default" : [
+							"Floran will help you reach high places!"
+						]
+					},
+					"glitch" : {
+						"default" : [
+							"Friendly. I offer concoctions for your high reaching aspirations!"
+						]
+					},
+					"novakid" : {
+						"default" : [
+							"I can help you climb mountains a lot easier, partner!"
+						]
+					}
+				},
+				"fieldBenefit" : "/dialog/skills.config:blueStim",
+				"combatBenefit" : "/dialog/skills.config:blueStim"
+			}
+		}
+	}
+]

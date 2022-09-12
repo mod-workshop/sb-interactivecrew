@@ -1,0 +1,276 @@
+[
+	{
+		"op" : "add", 
+		"path" : "/scripts/-",
+		"value" : "/scripts/actions/ic_crew.lua"
+	},
+	{
+		"op" : "add", 
+		"path" : "/parameters/holdPositionMargin",
+		"value" : 1.0
+	},
+	{
+		"op" : "add", 
+		"path" : "/parameters/skillCooldown",
+		"value" : 60
+	},
+	{
+		"op" : "remove", 
+		"path" : "/root/children/1/children/9"
+	},
+	{
+		"op" : "replace", 
+		"path" : "/root/children/1/children/3", 
+		"value" : {
+			"title": "sequence",
+			"type": "composite",
+			"name": "sequence",
+			"parameters": {},
+			"children": [
+				{
+					"title": "inverter",
+					"type": "decorator",
+					"name": "inverter",
+					"parameters": {},
+					"child": {
+						"title": "hasFlag",
+						"type": "action",
+						"name": "hasFlag",
+						"parameters": {
+							"name": {"key": "playerMoved"}
+						}
+					}
+				},
+				{
+					"type": "module",
+					"name": "ic_crewmember-combat",
+					"title": "ic_crewmember-combat",
+					"parameters": {}
+				}
+			]
+		}
+	},
+	{
+		"op" : "replace", 
+		"path" : "/root/children/1/children/9", 
+		"value" : {
+			"title": "sequence",
+			"type": "composite",
+			"name": "sequence",
+			"parameters": {},
+			"children": [
+				{
+					"title": null,
+					"type": "decorator",
+					"name": "inverter",
+					"parameters": {},
+					"child": {
+						"title": "isHoldingPosition",
+						"type": "action",
+						"name": "isHoldingPosition",
+						"parameters": {}
+					}
+				},
+				{
+					"title": "NPC Idle",
+					"type": "module",
+					"name": "NPC Idle",
+					"parameters": {
+						"play": { "value": true }
+					}
+				}
+			]
+		}
+	},
+	{
+		"op" : "add", 
+		"path" : "/root/children/1/children/9", 
+		"value" : {
+			"title": "sequence",
+			"type": "composite",
+			"name": "sequence",
+			"parameters": {},
+			"children": [
+				{
+					"title": "isLounging",
+					"type": "action",
+					"name": "isLounging",
+					"parameters": {}
+				},
+				{
+					"title": "icLounger",
+					"type": "module",
+					"name": "icLounger",
+					"parameters": {}
+				}
+			]
+		}
+	},
+	{
+		"op" : "add", 
+		"path" : "/root/children/1/children/9", 
+		"value" : {
+			"title": "sequence",
+			"type": "composite",
+			"name": "sequence",
+			"parameters": {},
+			"children": [
+				{
+					"title": "isHoldingPosition",
+					"type": "action",
+					"name": "isHoldingPosition",
+					"parameters": {},
+					"output": { "targetPosition": "targetPosition" }
+				},
+				{
+					"title": null,
+					"type": "decorator",
+					"name": "inverter",
+					"parameters": {},
+					"child": {
+						"title": "entityInRange",
+						"type": "action",
+						"name": "entityInRange",
+						"parameters": {
+							"entity": {"key": "self"},
+							"position": {"key": "targetPosition"},
+							"range": {"key": "<holdPositionMargin>"}
+						}
+					}
+				},
+				{
+					"title": "",
+					"type": "action",
+					"name": "moveToPosition",
+					"parameters": {
+						"groundPosition": {"value": true},
+						"position": { "key": "targetPosition" },
+						"run": {"value": true}
+					},
+					"output": { }
+				}
+			]
+		}
+	},
+	{
+		"op" : "add", 
+		"path" : "/root/children/1/children/2", 
+		"value" : {
+			"title": "sequence",
+			"type": "composite",
+			"name": "sequence",
+			"parameters": {},
+			"children": [
+				{
+					"title": "isOperating",
+					"type": "action",
+					"name": "isOperating",
+					"parameters": {}
+				},
+				{
+					"title": "succeeder",
+					"type": "decorator",
+					"name": "succeeder",
+					"parameters": {},
+					"child" : {
+						"title": "icOperator",
+						"type": "module",
+						"name": "icOperator",
+						"parameters": {}
+					}
+				},
+				{
+					"title": "isFollowingRecruiter",
+					"type": "action",
+					"name": "isFollowingRecruiter",
+					"parameters": {}
+				},
+				{
+					"title": "recruiterEntity",
+					"type": "action",
+					"name": "recruiterEntity",
+					"parameters": {},
+					"output": {
+					"entity": "player"
+					}
+				},
+				{
+					"title": "entityPosition",
+					"type": "action",
+					"name": "entityPosition",
+					"parameters": {
+					"entity": {"key": "player"}
+					},
+					"output": {
+					"position": "playerPosition"
+					}
+				},
+				{
+					"title": "moveToPosition",
+					"type": "action",
+					"name": "moveToPosition",
+					"parameters": {
+					"avoidLiquid": {"value": false},
+					"groundPosition": {"value": true},
+					"maxGround": {"value": 5},
+					"minGround": {"value": -20},
+					"pathOptions": {"value": {}},
+					"position": {"key": "playerPosition"},
+					"run": {"value": true}
+					},
+					"output": {
+					"pathfinding": "isPathfinding"
+					}
+				}
+			]
+		}
+	},
+	{
+		"op" : "add", 
+		"path" : "/root/children/1/children/2", 
+		"value" : {
+			"title": "sequence",
+			"type": "composite",
+			"name": "sequence",
+			"parameters": {},
+			"children": [
+				{
+					"title": "isUsingSkill",
+					"type": "action",
+					"name": "isUsingSkill",
+					"parameters": {},
+					"output": {}
+				},
+				{
+					"title": "succeeder",
+					"type": "decorator",
+					"name": "succeeder",
+					"parameters": {},
+					"child": {
+						"title": "cooldown",
+						"type": "decorator",
+						"name": "cooldown",
+						"parameters": {
+							"cooldown": {"key": "<skillCooldown>"},
+							"onFail": {"value": false},
+							"onSuccess": {"value": true}
+						},
+						"child": {
+							"type": "module",
+							"name": "crewmember-activateskill",
+							"title": "crewmember-activateskill",
+							"parameters": {}
+						}
+					}
+				},
+				{
+					"title": "stopUsingSkill",
+					"type": "action",
+					"name": "stopUsingSkill",
+					"parameters": {},
+					"output": {}
+				}
+			]
+		}
+	}
+]

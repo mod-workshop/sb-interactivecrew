@@ -1,0 +1,35 @@
+{
+  "type" : "crewmembersobffb",
+  "baseType" : "crewmembersobff",
+
+  "scriptConfig" : {
+    "crew" : {
+      "role" : {
+        "type" : "soldier",
+        "name" : "Partner(Hiker)",
+        "field" : "Comfort",
+        "uniformColorIndex" : 4,
+        "benefits" : [
+          {
+            // Ephemeral effects gained upon leaving the ship
+            "type" : "EphemeralEffect",
+            "effect" : "jumpboost",
+            "duration" : 30
+          },
+          {
+            // Persistent effects are active while on the ship
+            "type" : "PersistentEffect",
+            "effect" : "shipjumpboost"
+          }
+        ]
+      }
+    },
+
+	  "dialog" : {
+      "crewmember" : {
+		    "fieldBenefit" : "/dialog/skills.config:blueStim",
+        "combatBenefit" : "/dialog/skills.config:blueStim"
+      }
+    }
+  }
+}
