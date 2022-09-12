@@ -1,0 +1,93 @@
+{ 
+  "style" : "window",
+  "size" : [120, 220],
+  "title" : "Crew Manager",
+  "icon" : "/metagui/interactivecrew/icons/crewicon.png",
+  "scripts" : ["/metagui/interactivecrew/crewmanager.lua"], 
+  "uniqueBy" : "path",
+  "uniqueMode" : "toggle",
+  "children" : [
+    { "mode" : "horizontal" },
+    [ 
+      {},
+      { "type" : "label", "text" : "Party" },
+      {
+        "type" : "panel",
+        "style" : "concave",
+        "size" : [110, 97],
+        "children" : [
+          { 
+            "type" : "scrollArea", 
+            "id" : "partyScrollArea" 
+          }
+        ]
+      },
+      { "type" : "label", "text" : "Ship" },
+      {
+        "type" : "panel",
+        "style" : "concave",
+        "size" : [110, 97],
+        "children" : [
+          { 
+            "type" : "scrollArea", 
+            "id" : "shipScrollArea" 
+          }
+        ]
+      }
+    ], 
+    [
+      { "size" : 16 },
+      10,
+      {
+        "type" : "panel",
+        "style" : "concave",
+        "size" : [20, 20],
+        "expandMode" : [0, 0],
+        "children" : [
+          { 
+            "type" : "iconButton",
+            "id" : "moveUpButton",
+            "visible" : false,
+            "image" : "/metagui/interactivecrew/icons/arrowup.png",
+            "toolTip" : "Move follower up.",
+            "size": [16, 16]
+          }
+        ]
+      },
+      {
+        "type" : "panel",
+        "style" : "concave",
+        "size" : [20, 20],
+        "expandMode" : [0, 0],
+        "children" : [
+          { 
+            "type" : "iconButton",
+            "id" : "moveDownButton",
+            "visible" : false,
+            "image" : "/metagui/interactivecrew/icons/arrowdown.png",
+            "toolTip" : "Move follower down.",
+            "size": [16, 16]
+          }
+        ]
+      },
+      "spacer",
+      {
+        "type" : "panel",
+        "style" : "concave",
+        "size" : [20, 20],
+        "expandMode" : [0, 0],
+        "children" : [
+          { 
+            "type" : "iconButton",
+            "id" : "rebuildPartyData",
+            "visible" : true,
+            "image" : "/metagui/interactivecrew/icons/refresh.png",
+            "toolTip" : "Rebuilds party data in case of corruption.",
+            "size": [16, 16]
+          }
+        ]
+      },
+      1
+    ]
+  ]
+}

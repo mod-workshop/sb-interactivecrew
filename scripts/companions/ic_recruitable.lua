@@ -1,13 +1,10 @@
 require "/scripts/messageutil.lua"
 
-local oldrecruitableInit = recruitable.init
+local base_recruitableInit = recruitable.init
+local base_recruitableGenerateRecruitInfo = recruitable.generateRecruitInfo
 
 function recruitable.init()
-	oldrecruitableInit()
-	message.setHandler("recruit.confirmHoldPosition", simpleHandler(recruitable.confirmHoldPosition))
-	message.setHandler("recruit.confirmHoldPositionBehavior", simpleHandler(recruitable.confirmHoldPositionBehavior))
-	message.setHandler("recruit.confirmLounge", simpleHandler(recruitable.confirmLounge))
-	message.setHandler("recruit.confirmLoungeBehavior", simpleHandler(recruitable.confirmLoungeBehavior))
+	base_recruitableInit()
 	message.setHandler("recruit.toggleFollow", simpleHandler(recruitable.handleToggleFollow))
 	message.setHandler("recruit.relax", simpleHandler(recruitable.handleRelax))
 	message.setHandler("recruit.holdPosition", simpleHandler(recruitable.handleHoldPosition))
@@ -15,6 +12,12 @@ function recruitable.init()
 	message.setHandler("recruit.operate", simpleHandler(recruitable.handleOperate))
 	message.setHandler("recruit.useSkill", simpleHandler(recruitable.handleUseSkill))
 	message.setHandler("recruit.setTarget", simpleHandler(recruitable.handleSetTarget))
+end
+
+function recruitable.generateRecruitInfo()
+  local info = base_recruitableGenerateRecruitInfo()
+  info.commandId = entity.uniqueId()
+  return info
 end
 
 icCurrentStatus = {
@@ -39,7 +42,7 @@ function icSetStatus(status, args)
 	status.targetEntityId = args.targetEntityId
 end
 
-function recruitable.confirmFollow(skipNotification)
+function recruitable.icFollow(skipNotification)
 	recruitable.SetFollowLogic()
 	icSetStatus(icCurrentStatus, { isHoldingPosition = false, isLounging = false, isOperating = false, isUsingSkill = false, targetPosition = nil, targetEntityId = nil })
 	
@@ -48,7 +51,7 @@ function recruitable.confirmFollow(skipNotification)
 	end
 end
 
-function recruitable.confirmUnfollow(skipNotification)
+function recruitable.icUnfollow(skipNotification)
 	recruitable.SetUnfollowLogic()
 	icSetStatus(icCurrentStatus, { isHoldingPosition = false, isLounging = false, isOperating = false, isUsingSkill = false, targetPosition = nil, targetEntityId = nil })
 	
@@ -57,16 +60,7 @@ function recruitable.confirmUnfollow(skipNotification)
 	end
 end
 
-function recruitable.confirmUnfollowBehavior(skipNotification)
-	recruitable.SetUnfollowBehaviorLogic()
-	icSetStatus(icCurrentStatus, { isHoldingPosition = false, isLounging = false, isOperating = false, isUsingSkill = false, targetPosition = nil, targetEntityId = nil })
-	
-	if not skipNotification then
-		recruitable.sendNotification("unfollow")
-	end
-end
-
-function recruitable.confirmHoldPosition(targetPosition, skipNotification)
+function recruitable.icHoldPosition(targetPosition, skipNotification)
 	recruitable.SetUnfollowLogic()
 	icSetStatus(icCurrentStatus, { isHoldingPosition = true, isLounging = false, isOperating = false, isUsingSkill = false, targetPosition = targetPosition, targetEntityId = nil })
 	
@@ -75,26 +69,8 @@ function recruitable.confirmHoldPosition(targetPosition, skipNotification)
 	end
 end
 
-function recruitable.confirmHoldPositionBehavior(targetPosition, skipNotification)
-	recruitable.SetUnfollowBehaviorLogic()
-	icSetStatus(icCurrentStatus, { isHoldingPosition = true, isLounging = false, isOperating = false, isUsingSkill = false, targetPosition = targetPosition, targetEntityId = nil })
-	
-	if not skipNotification then
-		recruitable.sendNotification("holdPosition")
-	end
-end
-
-function recruitable.confirmLounge(loungeableId, skipNotification)
+function recruitable.icLounge(loungeableId, skipNotification)
 	recruitable.SetUnfollowLogic()
-	icSetStatus(icCurrentStatus, { isHoldingPosition = false, isLounging = true, isOperating = false, isUsingSkill = false, targetPosition = nil, targetEntityId = loungeableId })
-	
-	if not skipNotification then
-		recruitable.sendNotification("lounge")
-	end
-end
-
-function recruitable.confirmLoungeBehavior(loungeableId, skipNotification)
-	recruitable.SetUnfollowBehaviorLogic()
 	icSetStatus(icCurrentStatus, { isHoldingPosition = false, isLounging = true, isOperating = false, isUsingSkill = false, targetPosition = nil, targetEntityId = loungeableId })
 	
 	if not skipNotification then
@@ -114,14 +90,6 @@ function recruitable.SetFollowLogic()
 end
 
 function recruitable.SetUnfollowLogic()
-	npc.setPersistent(true)
-	npc.setKeepAlive(false)
-	storage.followingOwner = false
-	storage.behaviorFollowing = false
-	npc.setDamageTeam(recruitable.defaultDamageTeam)
-end
-
-function recruitable.SetUnfollowBehaviorLogic()
 	npc.setPersistent(false)
 	npc.setKeepAlive(true)
 	storage.followingOwner = true
@@ -134,56 +102,30 @@ end
 
 function recruitable.handleToggleFollow()
 	if storage.behaviorFollowing then
-		if world.getProperty("ephemeral") then
-			recruitable.confirmUnfollowBehavior()
-		else
-			world.sendEntityMessage(recruitable.ownerUuid(), "recruits.requestUnfollow", entity.uniqueId(), recruitable.recruitUuid())
-		end
+      recruitable.icUnfollow(false)
 	else
-		world.sendEntityMessage(recruitable.ownerUuid(), "recruits.requestFollow", entity.uniqueId(), recruitable.recruitUuid(), recruitable.generateRecruitInfo())
-	end
-end
-
-function recruitable.handleRelax()
-	if world.getProperty("ephemeral") then
-		recruitable.confirmUnfollowBehavior()
-	else
-		world.sendEntityMessage(recruitable.ownerUuid(), "recruits.requestUnfollow", entity.uniqueId(), recruitable.recruitUuid())
+    recruitable.icFollow(false)
 	end
 end
 
 function recruitable.handleHoldPosition(args)
-	local targetPosition = args.targetPosition
-	
-	if world.getProperty("ephemeral") then
-		recruitable.confirmHoldPositionBehavior(targetPosition)
-	else
-		world.sendEntityMessage(recruitable.ownerUuid(), "recruits.requestHoldPosition", entity.uniqueId(), recruitable.recruitUuid(), targetPosition)
-	end
+	recruitable.icHoldPosition(args.targetPosition)
 end
 
 function recruitable.handleLounge(args)
-	local loungeableId = args.targetEntityId
-	
-	if world.getProperty("ephemeral") then
-		recruitable.confirmLoungeBehavior(loungeableId)
-	else
-		world.sendEntityMessage(recruitable.ownerUuid(), "recruits.requestLounge", entity.uniqueId(), recruitable.recruitUuid(), loungeableId)
-	end
+	recruitable.icLounge(args.targetEntityId)
 end
 
 function recruitable.handleOperate(args, skipNotification)
-	local deviceId = args.targetEntityId
-	
 	icSetStatus(icPreviousStatus, icCurrentStatus)
-	icSetStatus(icCurrentStatus, { isHoldingPosition = false, isLounging = false, isOperating = true, isUsingSkill = false, targetPosition = nil, targetEntityId = deviceId })
+	icSetStatus(icCurrentStatus, { isHoldingPosition = false, isLounging = false, isOperating = true, isUsingSkill = false, targetPosition = nil, targetEntityId = args.targetEntityId })
 	
 	if not skipNotification then
 		recruitable.sendNotification("operate")
 	end
 end
 
-function recruitable.handleUseSkill(args)
+function recruitable.handleUseSkill()
 	icSetStatus(icCurrentStatus, { isHoldingPosition = false, isLounging = false, isOperating = false, isUsingSkill = true, targetPosition = nil, targetEntityId = nil })
 end
 
@@ -246,5 +188,5 @@ end
 
 function recruitable.sendNotification(message)
 	local playerEntityId = world.loadUniqueEntity(recruitable.ownerUuid())
-    notify( { type = message, sourceId = playerEntityId } )
+  notify( { type = message, sourceId = playerEntityId } )
 end

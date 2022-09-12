@@ -8,7 +8,6 @@ local loungeMessage = "recruit.lounge"
 local operateMessage = "recruit.operate"
 local useSkillMessage = "recruit.useSkill"
 local setTargetMessage = "recruit.setTarget"
-local followers = {}
 
 idleStance = {
 	armRotation = 0,
@@ -19,27 +18,26 @@ idleStance = {
 }
 
 function init()
-	followers = world.sendEntityMessage(player.id(),"player.getCompanions"):result() or {}
-	
 	self.weapon = Weapon:new()
 	self.weapon:setStance(idleStance)
 	self.weapon:init()
 end
 
 function activate(fireMode, shiftHeld)
+  local followers = world.sendEntityMessage(player.id(),"player.getFollowerIds"):result()
 	local commandedFollower = nil
 
 	if fireMode == "primary" then
 		if shiftHeld and followers[2] ~= nil then
-			commandedFollower = followers[2].uniqueId
+			commandedFollower = followers[2]
 		elseif followers[1] ~= nil then
-			commandedFollower = followers[1].uniqueId
+			commandedFollower = followers[1]
 		end
 	elseif fireMode == "alt" then
 		if shiftHeld and followers[4] ~= nil then
-			commandedFollower = followers[4].uniqueId
+			commandedFollower = followers[4]
 		elseif followers[3] ~= nil then
-			commandedFollower = followers[3].uniqueId
+			commandedFollower = followers[3]
 		end
 	end
 

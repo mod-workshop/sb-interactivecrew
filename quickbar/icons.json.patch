@@ -1,0 +1,11 @@
+[
+  {
+    "op": "add",
+    "path": "/items/interactivecrew:crewmanager",
+    "value": {
+      "label": "Crew Manager",
+      "icon": "/metagui/interactivecrew/icons/crewicon.png",
+      "action": [ "ui", "interactivecrew:crewmanager" ]
+    }
+  }
+]

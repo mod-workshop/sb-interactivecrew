@@ -1,0 +1,5 @@
+[
+  { "op" : "add", "path" : "/panes/interactivecrew", "value" : {
+    "crewmanager" : "/metagui/interactivecrew/crewmanager.ui"
+  } }
+]
