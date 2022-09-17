@@ -70,6 +70,55 @@
           }
         ]
       },
+      {
+        "type" : "panel",
+        "style" : "concave",
+        "size" : [20, 20],
+        "expandMode" : [0, 0],
+        "children" : [
+          { 
+            "type" : "iconButton",
+            "id" : "setHome",
+            "visible" : false,
+            "image" : "/metagui/interactivecrew/icons/check.png",
+            "toolTip" : "Set follower's current location as their new home.",
+            "size": [16, 16]
+          }
+        ]
+      },
+      {
+        "type" : "panel",
+        "style" : "concave",
+        "size" : [20, 20],
+        "expandMode" : [0, 0],
+        "children" : [
+          { 
+            "type" : "iconButton",
+            "id" : "moveToShip",
+            "visible" : false,
+            "image" : "/metagui/interactivecrew/icons/cross.png",
+            "toolTip" : "Send follower to ship.",
+            "size": [16, 16]
+          }
+        ]
+      },
+      20,
+      {
+        "type" : "panel",
+        "style" : "concave",
+        "size" : [20, 20],
+        "expandMode" : [0, 0],
+        "children" : [
+          { 
+            "type" : "iconButton",
+            "id" : "moveToParty",
+            "visible" : false,
+            "image" : "/metagui/interactivecrew/icons/check.png",
+            "toolTip" : "Call crewmate to join your party.",
+            "size": [16, 16]
+          }
+        ]
+      },
       "spacer",
       {
         "type" : "panel",

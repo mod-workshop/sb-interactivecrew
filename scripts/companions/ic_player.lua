@@ -8,10 +8,13 @@ local spawnedCompanions = false;
 
 function init()
 	base_init()
-	message.setHandler("player.getFollowerIds", simpleHandler(getFollowerIds))
-	message.setHandler("player.getPartyMembers", simpleHandler(getPartyCrew))
-	message.setHandler("player.getShipCrew", simpleHandler(getShipCrew))
-	message.setHandler("player.rebuildParty", simpleHandler(buildParty))
+	message.setHandler("player.getIsOnShip", simpleHandler(handleGetIsOnShip))
+	message.setHandler("player.getFollowerIds", simpleHandler(handleGetFollowerIds))
+	message.setHandler("player.getPartyMembers", simpleHandler(handleGetPartyCrew))
+	message.setHandler("player.getShipCrew", simpleHandler(handleGetShipCrew))
+	message.setHandler("player.rebuildParty", simpleHandler(handleBuildParty))
+	message.setHandler("recruits.requestJoinParty", simpleHandler(handleRequestJoinParty))
+	message.setHandler("recruits.requestLeaveParty", simpleHandler(handleRequestLeaveParty))
 
   if not player.getProperty(prop_party) then
     player.setProperty(prop_party, {})
@@ -31,7 +34,7 @@ function spawnCompanions()
   local partyOrder = player.getProperty(prop_party)
 
   if not partyOrder or partyOrder[1] == nil then
-    buildParty()
+    handleBuildParty()
   else
     refreshParty()
   end
@@ -39,7 +42,7 @@ function spawnCompanions()
   return true
 end
 
-function buildParty()
+function handleBuildParty()
   local followers = playerCompanions.getCompanions("followers")
   local partyOrder = {}
 
@@ -74,14 +77,18 @@ function refreshParty()
   end
 
   if #newPartyOrder ~= #followers then
-    buildParty()
+    handleBuildParty()
     return
   end
 
   player.setProperty(prop_party, newPartyOrder)
 end
 
-function getFollowerIds()
+function handleGetIsOnShip()
+  return onOwnShip()
+end
+
+function handleGetFollowerIds()
   local party = player.getProperty(prop_party)
   local partyIds = {}
 
@@ -92,10 +99,25 @@ function getFollowerIds()
   return partyIds
 end
 
-function getPartyCrew()
+function handleGetPartyCrew()
   return playerCompanions.getCompanions("followers")
 end
 
-function getShipCrew()
+function handleGetShipCrew()
   return playerCompanions.getCompanions("shipCrew")
+end
+
+function handleRequestJoinParty(uniqueId, recruitUuid)
+  if onOwnShip() then
+    promises:add(world.sendEntityMessage(uniqueId, "recruit.getRecruitInfo"), function(info)
+      requestFollow(uniqueId, recruitUuid, info)
+      end
+    )
+  end
+end
+
+function handleRequestLeaveParty(uniqueId, recruitUuid)
+  if onOwnShip() then
+    requestUnfollow(uniqueId, recruitUuid)
+  end
 end

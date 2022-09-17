@@ -4,7 +4,8 @@ require "/scripts/messageutil.lua"
 local prop_party = "ic_party"
 local prop_partyChanged = "ic_partyChanged"
 local crew = { party = {}, ship = {} }
-local selectedCrew = nil
+local selectedCrewName = nil
+local selectedCrewUniqueId = nil
 local selectedCrewWidget = nil
 
 
@@ -113,7 +114,7 @@ function buildListItem(list, crewmate, onSelected)
     listItem.onSelected = onSelected
     crewmate.listItem = listItem
 	else
-		--sb.logInfo("The species '"..species.."' is not currently installed. Crew member '"..(name or "unknown").."' won't be loaded.")
+		sb.logInfo("The species '"..species.."' is not currently installed. Crew member '"..(name or "unknown").."' won't be loaded.")
 	end
 end
 
@@ -123,8 +124,14 @@ function partyCrewSelected(item)
   end
 
   selectedCrewWidget = item
-  selectedCrew = item.data.name
+  selectedCrewName = item.data.name
+  selectedCrewUniqueId = item.data.uniqueId
   togglePartyControls(true)
+
+  local onship = world.sendEntityMessage(player.id(), "player.getIsOnShip"):result()
+  if onship then
+    moveToParty:setVisible(false)
+  end
 end
 
 function shipCrewSelected(item)
@@ -133,20 +140,26 @@ function shipCrewSelected(item)
   end
 
   selectedCrewWidget = item
-  selectedCrew = item.data.name
+  selectedCrewName = item.data.name
+  selectedCrewUniqueId = item.data.uniqueId
   togglePartyControls(false)
+
+  local onship = world.sendEntityMessage(player.id(), "player.getIsOnShip"):result()
+  if onship then
+    moveToParty:setVisible(true)
+  end
 end
 
 function moveUpButton:onClick()
   local party = player.getProperty(prop_party)
 
   for i = 1, #party do
-    if selectedCrew == party[i].name then
+    if selectedCrewName == party[i].name then
       if i == 1 then return end
       party[i], party[i-1] = party[i-1], party[i]
       player.setProperty(prop_party, party)
       fillPartyList()
-      crew.party[selectedCrew].listItem:select()
+      crew.party[selectedCrewName].listItem:select()
       return
     end
   end
@@ -156,15 +169,37 @@ function moveDownButton:onClick()
   local party = player.getProperty(prop_party)
 
   for i, partyMember in ipairs(party) do
-    if selectedCrew == partyMember.name then
+    if selectedCrewName == partyMember.name then
       if i == #party then return end
       party[i], party[i+1] = party[i+1], party[i]
       player.setProperty(prop_party, party)
       fillPartyList()
-      crew.party[selectedCrew].listItem:select()
+      crew.party[selectedCrewName].listItem:select()
       return
     end
   end
+end
+
+function moveToShip:onClick()
+  togglePartyControls(false)
+  moveToParty:setVisible(false)
+	world.sendEntityMessage(
+    player.id(),
+    "recruits.requestLeaveParty",
+    crew.party[selectedCrewName].data.uniqueId,
+    crew.party[selectedCrewName].data.podUuid
+  )
+end
+
+function moveToParty:onClick()
+  togglePartyControls(false)
+  moveToParty:setVisible(false)
+	world.sendEntityMessage(
+    player.id(),
+    "recruits.requestJoinParty",
+    crew.ship[selectedCrewName].data.uniqueId,
+    crew.ship[selectedCrewName].data.podUuid
+  )
 end
 
 function rebuildPartyData:onClick()
@@ -174,6 +209,11 @@ end
 function togglePartyControls(isVisible)
   moveUpButton:setVisible(isVisible)
   moveDownButton:setVisible(isVisible)
+
+  local onship = world.sendEntityMessage(player.id(), "player.getIsOnShip"):result()
+  if onship then
+    moveToShip:setVisible(isVisible)
+  end
 end
 
 function createPortrait(mode, crewmate, itemSlots, customIdentity)

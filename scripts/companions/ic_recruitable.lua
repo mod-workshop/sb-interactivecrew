@@ -5,8 +5,8 @@ local base_recruitableGenerateRecruitInfo = recruitable.generateRecruitInfo
 
 function recruitable.init()
 	base_recruitableInit()
+	message.setHandler("recruit.getRecruitInfo", simpleHandler(recruitable.handleGetRecruitInfo))
 	message.setHandler("recruit.toggleFollow", simpleHandler(recruitable.handleToggleFollow))
-	message.setHandler("recruit.relax", simpleHandler(recruitable.handleRelax))
 	message.setHandler("recruit.holdPosition", simpleHandler(recruitable.handleHoldPosition))
 	message.setHandler("recruit.lounge", simpleHandler(recruitable.handleLounge))
 	message.setHandler("recruit.operate", simpleHandler(recruitable.handleOperate))
@@ -98,6 +98,10 @@ function recruitable.SetUnfollowLogic()
 	if playerEntityId and world.entityExists(playerEntityId) then
 		npc.setDamageTeam(recruitable.defaultDamageTeam)
 	end
+end
+
+function recruitable.handleGetRecruitInfo()
+  return recruitable:generateRecruitInfo()
 end
 
 function recruitable.handleToggleFollow()
