@@ -17,6 +17,7 @@ end
 function recruitable.generateRecruitInfo()
   local info = base_recruitableGenerateRecruitInfo()
   info.commandId = entity.uniqueId()
+  info.config.parameters.scriptConfig.crew.role = config.getParameter("crew.role.name")
   return info
 end
 
