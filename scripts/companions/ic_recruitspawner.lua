@@ -30,6 +30,8 @@ function addCrewToParty(podUuid, uniqueId, name)
   local newPartyMember = { name = name, uniqueId = uniqueId, podUuid = podUuid }
   local newPartyOrder = {}
 
+  sb.logInfo("ic.ic_recruitSpawner.addCrewToParty > Adding ("..newPartyMember.name..")")
+
   if #partyOrder == 0 then
     table.insert(newPartyOrder, newPartyMember)
     player.setProperty(prop_party, newPartyOrder)
@@ -54,6 +56,7 @@ function addCrewToParty(podUuid, uniqueId, name)
   end
 
   player.setProperty(prop_party, newPartyOrder)
+  sb.logInfo("ic.ic_recruitSpawner.addCrewToParty > Party list:"..sb.print(player.getProperty(prop_party)))
 end
 
 function removeFollowerFromParty(podUuid)
@@ -68,7 +71,9 @@ function removeFollowerFromParty(podUuid)
       podUuid = partyMember.podUuid
     })
     ::continue::
+    sb.logInfo("ic.ic_recruitSpawner.removeFollowerFromParty > Removing ("..partyMember.name..") from party...")
   end
  
   player.setProperty(prop_party, newPartyOrder)
+  sb.logInfo("ic.ic_recruitSpawner.removeFollowerFromParty > Party list:"..sb.print(player.getProperty(prop_party)))
 end

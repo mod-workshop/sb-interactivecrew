@@ -2,7 +2,6 @@ require "/scripts/messageutil.lua"
 require "/items/active/weapons/weapon.lua"
 
 local toggleFollowMessage = "recruit.toggleFollow"
-local relaxMessage = "recruit.relax"
 local HoldPositionMessage = "recruit.holdPosition"
 local loungeMessage = "recruit.lounge"
 local operateMessage = "recruit.operate"
@@ -53,11 +52,15 @@ end
 
 function interpretCommand(followerId, position)
 	local targetEntityId = world.entityQuery(position, 1.0, { includedTypes = { "creature" } })[1]
-	
+  sb.logInfo("ic.cmdhand.interpretCommand > followerId: "..sb.print(followerId))
+
 	if targetEntityId ~= nil then
+	  local targetUniqueId = world.entityUniqueId(targetEntityId)
+    sb.logInfo("ic.cmdhand.interpretCommand > Target ("..targetEntityId..") name: "..sb.print(world.entityName(targetEntityId))..", unique Id: "..targetUniqueId)
+
 		if targetEntityId == player.id() then
 			return { followerId = followerId, message = toggleFollowMessage, args = { } }
-		elseif world.entityUniqueId(targetEntityId) == followerId then
+		elseif targetUniqueId == followerId then
 			return { followerId = followerId, message = useSkillMessage, args = { } }
 		elseif entity.isValidTarget(targetEntityId) then
 			return { followerId = followerId, message = setTargetMessage, args = { attackTargetId = targetEntityId } }
@@ -82,6 +85,7 @@ function interpretCommand(followerId, position)
 end
 
 function commandCrewmate(command)
+  sb.logInfo("cmdhand.commandCrewmate > Sending command: "..sb.print(command))
 	world.sendEntityMessage(command.followerId, command.message, command.args)
 end
 

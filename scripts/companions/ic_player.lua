@@ -12,7 +12,7 @@ function init()
 	message.setHandler("player.getFollowerIds", simpleHandler(handleGetFollowerIds))
 	message.setHandler("player.getPartyMembers", simpleHandler(handleGetPartyCrew))
 	message.setHandler("player.getShipCrew", simpleHandler(handleGetShipCrew))
-	message.setHandler("player.rebuildParty", simpleHandler(handleBuildParty))
+	message.setHandler("player.rebuildParty", simpleHandler(buildParty))
 	message.setHandler("recruits.requestJoinParty", simpleHandler(handleRequestJoinParty))
 	message.setHandler("recruits.requestLeaveParty", simpleHandler(handleRequestLeaveParty))
 
@@ -34,7 +34,7 @@ function spawnCompanions()
   local partyOrder = player.getProperty(prop_party)
 
   if not partyOrder or partyOrder[1] == nil then
-    handleBuildParty()
+    buildParty()
   else
     refreshParty()
   end
@@ -42,7 +42,8 @@ function spawnCompanions()
   return true
 end
 
-function handleBuildParty()
+function buildParty()
+  sb.logInfo("ic.ic_player.buildParty > Building party list from scratch...")
   local followers = playerCompanions.getCompanions("followers")
   local partyOrder = {}
 
@@ -56,9 +57,11 @@ function handleBuildParty()
 
   player.setProperty(prop_party, partyOrder)
   player.setProperty(prop_partyChanged, true)
+  sb.logInfo("ic.ic_player.buildParty > Party list:"..sb.print(player.getProperty(prop_party)))
 end
 
 function refreshParty()
+  sb.logInfo("ic.ic_player.refreshParty > Refreshing party list...")
   local followers = playerCompanions.getCompanions("followers")
   local partyOrder = player.getProperty(prop_party)
   local newPartyOrder = {}
@@ -77,11 +80,12 @@ function refreshParty()
   end
 
   if #newPartyOrder ~= #followers then
-    handleBuildParty()
+    buildParty()
     return
   end
 
   player.setProperty(prop_party, newPartyOrder)
+  sb.logInfo("ic.ic_player.refreshParty > Party list:"..sb.print(player.getProperty(prop_party)))
 end
 
 function handleGetIsOnShip()

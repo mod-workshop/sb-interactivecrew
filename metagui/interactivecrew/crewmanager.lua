@@ -78,7 +78,7 @@ function buildListItem(list, crewmate, onSelected)
   local name = crewmate.data.config.parameters.identity.name
 	local species = crewmate.data.config.species
   local roleOverride = ((((crewmate.data.config.parameters.scriptConfig.personality.storedOverrides or {}).scriptConfig or {}).crew or {}).role or {}).name or ""
-  role = crewmate.data.config.parameters.scriptConfig.crew.role or roleOverride
+  role = crewmate.role or roleOverride
   local portrait = nil
 	pcall(function()
 		portrait = createPortrait(self.customSpecies[species] and self.customSpecies[species].mode or "bust", crewmate.data)
