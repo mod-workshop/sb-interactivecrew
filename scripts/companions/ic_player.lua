@@ -7,10 +7,10 @@ local prop_partyChanged = "ic_partyChanged"
 local spawnedCompanions = false;
 
 function init()
-	base_init()
+  base_init()
 	message.setHandler("player.getIsOnShip", simpleHandler(handleGetIsOnShip))
 	message.setHandler("player.getFollowerIds", simpleHandler(handleGetFollowerIds))
-	message.setHandler("player.getFollowers", simpleHandler(handleGetFollowers))
+  message.setHandler("player.getPartyMembers", simpleHandler(handleGetPartyCrew))
 	message.setHandler("player.getShipCrew", simpleHandler(handleGetShipCrew))
 	message.setHandler("player.rebuildParty", simpleHandler(buildParty))
 	message.setHandler("recruits.requestJoinParty", simpleHandler(handleRequestJoinParty))
@@ -103,7 +103,7 @@ function handleGetFollowerIds()
   return partyIds
 end
 
-function handleGetFollowers()
+function handleGetPartyCrew()
   return playerCompanions.getCompanions("followers")
 end
 

@@ -33,11 +33,11 @@ function update()
 end
 
 function refreshParty()
-	local followers = world.sendEntityMessage(player.id(), "player.getFollowers"):result()
+  local partyMembers = world.sendEntityMessage(player.id(), "player.getPartyMembers"):result()
   local party = {}
 
-  for i, follower in ipairs(followers) do
-    party[follower.config.parameters.identity.name] = { data = follower }
+  for i, partyMember in ipairs(partyMembers) do
+    party[partyMember.config.parameters.identity.name] = { data = partyMember }
   end
 
   crew.party = party
