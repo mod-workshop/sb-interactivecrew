@@ -56,7 +56,7 @@ function interpretCommand(followerId, position)
 
 	if targetEntityId ~= nil then
 	  local targetUniqueId = world.entityUniqueId(targetEntityId)
-    sb.logInfo("ic.cmdhand.interpretCommand > Target ("..targetEntityId..") name: "..sb.print(world.entityName(targetEntityId))..", unique Id: "..targetUniqueId)
+    sb.logInfo("ic.cmdhand.interpretCommand > Target ("..targetEntityId..") name: "..sb.print(world.entityName(targetEntityId))..", unique Id: "..sb.print(targetUniqueId))
 
 		if targetEntityId == player.id() then
 			return { followerId = followerId, message = toggleFollowMessage, args = { } }
