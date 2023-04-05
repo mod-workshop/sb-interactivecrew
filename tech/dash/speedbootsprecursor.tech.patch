@@ -1,0 +1,7 @@
+[
+  {
+    "op": "add",
+    "path": "/scripts/-",
+    "value": "/scripts/ic/tech_cmdkey.lua"
+  }
+]

@@ -1,0 +1,7 @@
+[
+  {
+    "op" : "add",
+    "path" : "/keyActions/player/-",
+    "value" : { "label" : "^Cyan;CIC^reset; - Command Crew", "action" : "PlayerTechAction3" }
+  }
+]
